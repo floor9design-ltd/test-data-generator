@@ -21,6 +21,7 @@
 
 namespace Floor9design\TestDataGenerator\Tests\Unit;
 
+use Floor9design\TestDataGenerator\Generator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -44,6 +45,7 @@ class GeneratorTest extends TestCase
 {
     public function testTests()
     {
+        $generator = new Generator();
         $this->assertTrue(true);
     }
 }

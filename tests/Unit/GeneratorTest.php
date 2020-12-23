@@ -44,7 +44,7 @@ class GeneratorTest extends TestCase
 {
     public function testTests()
     {
-        $this->assertTrue(1);
+        $this->assertTrue(true);
     }
 }
 

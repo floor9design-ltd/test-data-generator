@@ -8,6 +8,11 @@
         <include>
             <directory suffix=".php">./src</directory>
         </include>
+        <report>
+            <clover outputFile="docs/tests/clover.xml"/>
+            <crap4j outputFile="docs/tests/crap4j.xml"/>
+            <html outputDirectory="docs/tests/"/>
+        </report>
     </coverage>
     <testsuites>
         <testsuite name="Unit">

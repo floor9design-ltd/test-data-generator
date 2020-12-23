@@ -3,6 +3,9 @@ language: php
 php:
   - '7.4'
 
+env:
+  - CODECOV_TOKEN="845407a7-add8-45a2-91d5-d4cc94184e53"
+
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev

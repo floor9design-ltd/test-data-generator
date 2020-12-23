@@ -1,0 +1,38 @@
+{
+    "name": "floor9design/test-data-generator",
+    "type": "library",
+    "description": "Classes to generate test data",
+    "keywords": [
+        "floor9design",
+        "test",
+        "test data",
+        "test data generator"
+    ],
+    "homepage": "https://github.com/floor9design-ltd/test-data-generator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rick Morice",
+            "email": "rick@floor9design.com",
+            "homepage": "http://floor9design.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php" : ">=7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=8.0",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Floor9design\\TestDataGenerator\\": "src",
+            "Floor9design\\TestDataGenerator\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

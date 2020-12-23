@@ -9,8 +9,7 @@
             <directory suffix=".php">./src</directory>
         </include>
         <report>
-            <clover outputFile="docs/tests/clover.xml"/>
-            <crap4j outputFile="docs/tests/crap4j.xml"/>
+            <clover outputFile="clover.xml"/>
             <html outputDirectory="docs/tests/"/>
         </report>
     </coverage>

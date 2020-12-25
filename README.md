@@ -15,7 +15,10 @@
 
 This offers a very simple class offering methods for basic data generation, ideal for unit tests or data filling.
 This is not meant to be an ongoing replacement for [fzaninotto/Faker](https://github.com/fzaninotto/Faker), but bear in 
-mind that it is[retired](https://marmelab.com/blog/2020/10/21/sunsetting-faker.html)
+mind that it is[retired](https://marmelab.com/blog/2020/10/21/sunsetting-faker.html).
+
+Note: some of these are very simple, but some items require a little code, such as filtering or formatting. This 
+simply centralises this code. 
 
 ## Features
 

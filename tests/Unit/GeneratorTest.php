@@ -7,7 +7,7 @@
  * php 7.3+
  *
  * @category  None
- * @package   Floor9design\Eventim\PluginCore\Tests\Unit
+ * @package   Floor9design\TestDataGenerator\Tests\Unit
  * @author    Rick Morice <rick@floor9design.com>
  * @copyright Floor9design Ltd
  * @license   MIT
@@ -22,7 +22,9 @@
 namespace Floor9design\TestDataGenerator\Tests\Unit;
 
 use Floor9design\TestDataGenerator\Generator;
+use Floor9design\TestDataGenerator\GeneratorException;
 use PHPUnit\Framework\TestCase;
+
 
 /**
  * GeneratorTest
@@ -30,7 +32,7 @@ use PHPUnit\Framework\TestCase;
  * Tests the Generator
  *
  * @category  None
- * @package   Floor9design\Eventim\PluginCore\Tests\Unit
+ * @package   Floor9design\TestDataGenerator\Tests\Unit
  * @author    Rick Morice <rick@floor9design.com>
  * @copyright Floor9design Ltd
  * @license   MIT
@@ -43,10 +45,56 @@ use PHPUnit\Framework\TestCase;
  */
 class GeneratorTest extends TestCase
 {
-    public function testTests()
+    public function testRandomInteger()
     {
         $generator = new Generator();
-        $this->assertTrue(true);
+
+        // no bounds
+        $output = $generator->randomInteger();
+        $this->assertIsInt($output);
+
+        // bounds
+        $output = $generator->randomInteger(50, 100);
+        $this->assertIsInt($output);
+
+        // above the bottom bound
+        $this->assertTrue($output>49);
+
+        // below the top bound
+        $this->assertTrue($output<101);
+
+        // edge case
+        $output = $generator->randomInteger(50, 50);
+        $this->assertEquals(50, $output);
+
+        $this->expectException(GeneratorException::class);
+        $generator->randomInteger(100, 50);
+    }
+
+    public function testRandomIntegerArray()
+    {
+        $generator = new Generator();
+
+        // test structure
+        $output = $generator->randomIntegerArray();
+        $this->assertIsArray($output);
+
+        foreach($output as $should_be_int) {
+            $this->assertIsInt($should_be_int);
+        }
+
+        // test size
+        $output = $generator->randomIntegerArray(50, 100, 5);
+        $this->assertEquals(5, count($output));
+
+        // test size
+        $output = $generator->randomIntegerArray(50, 100, 0);
+        $this->assertEquals(0, count($output));
+
+        // test exception
+        $this->expectException(GeneratorException::class);
+        $generator->randomIntegerArray(100, 50, 3);
+
     }
 }
 

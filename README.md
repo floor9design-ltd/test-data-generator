@@ -4,7 +4,7 @@
 [![Packagist](https://img.shields.io/packagist/v/floor9design/test-data-generator?style=plastic)](https://packagist.org/packages/floor9design/test-data-generator)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=plastic)](LICENCE.md)
 
-[![Build Status](https://img.shields.io/travis/floor9design-ltd/test-data-generator?style=plastic)](https://travis-ci.org/github/floor9design-ltd/test-data-generator)
+[![Build Status](https://img.shields.io/travis/floor9design-ltd/test-data-generator?style=plastic)](https://travis-ci.com/github/floor9design-ltd/test-data-generator)
 [![Build Status](https://img.shields.io/codecov/c/github/floor9design-ltd/test-data-generator?style=plastic)](https://codecov.io/gh/floor9design-ltd/test-data-generator)
 
 [![Github Downloads](https://img.shields.io/github/downloads/floor9design-ltd/test-data-generator/total?style=plastic)](https://github.com/floor9design-ltd/test-data-generator)

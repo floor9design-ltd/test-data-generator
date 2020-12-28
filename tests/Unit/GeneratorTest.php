@@ -58,10 +58,10 @@ class GeneratorTest extends TestCase
         $this->assertIsInt($output);
 
         // above the bottom bound
-        $this->assertTrue($output>49);
+        $this->assertTrue($output > 49);
 
         // below the top bound
-        $this->assertTrue($output<101);
+        $this->assertTrue($output < 101);
 
         // edge case
         $output = $generator->randomInteger(50, 50);
@@ -79,7 +79,7 @@ class GeneratorTest extends TestCase
         $output = $generator->randomIntegerArray();
         $this->assertIsArray($output);
 
-        foreach($output as $should_be_int) {
+        foreach ($output as $should_be_int) {
             $this->assertIsInt($should_be_int);
         }
 
@@ -94,7 +94,6 @@ class GeneratorTest extends TestCase
         // test exception
         $this->expectException(GeneratorException::class);
         $generator->randomIntegerArray(100, 50, 3);
-
     }
 
     public function testRandomString()
@@ -128,17 +127,34 @@ class GeneratorTest extends TestCase
         $output = $generator->randomStringArray();
         $this->assertIsArray($output);
 
-        foreach($output as $should_be_string) {
+        foreach ($output as $should_be_string) {
             $this->assertIsString($should_be_string);
         }
 
         // test size
         $output = $generator->randomStringArray(5, 10);
-        $this->assertEquals(5, count($output));
+        $this->assertEquals(10, count($output));
 
         // test empty
-        $output = $generator->randomStringArray(0, 10);
+        $output = $generator->randomStringArray(5, 0);
         $this->assertEquals(0, count($output));
     }
+
+    public function testRandomMySqlDate()
+    {
+        $generator = new Generator();
+
+        // test it is a valid time:
+        $this->assertIsInt(strtotime($generator->randomMySqlDate()));
+    }
+
+    public function testRandomMySqlDateTime()
+    {
+        $generator = new Generator();
+
+        // test it is a valid time:
+        $this->assertIsInt(strtotime($generator->randomMySqlDateTime()));
+    }
+
 }
 

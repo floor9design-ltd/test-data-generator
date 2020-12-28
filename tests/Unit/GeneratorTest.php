@@ -52,6 +52,44 @@ class GeneratorTest extends TestCase
         $this->assertIsBool($generator->randomBoolean());
     }
 
+    public function testRandomFloat()
+    {
+        $generator = new Generator();
+
+        // no bounds
+        $output = $generator->randomFloat();
+        $this->assertIsFloat($output);
+
+        // bounds
+        $output = $generator->randomFloat(50, 100);
+        $this->assertIsFloat($output);
+
+        // above the bottom bound
+        $this->assertTrue($output > 49);
+
+        // below the top bound
+        $this->assertTrue($output < 101);
+
+        // edge case
+        $output = $generator->randomFloat(50, 50);
+        $this->assertEquals(50, $output);
+
+        // decimal places
+        $expected_decimal_places = 2;
+        $output = $generator->randomFloat(50, 100, $expected_decimal_places);
+
+        if ((int)$output == $output) {
+            $decimal_places = 0;
+        } else {
+            $decimal_places = strlen($output) - strrpos($output, '.') - 1;
+        }
+        $this->assertTrue($decimal_places <= $expected_decimal_places);
+
+        // Exception
+        $this->expectException(GeneratorException::class);
+        $generator->randomFloat(100, 50);
+    }
+
     public function testRandomInteger()
     {
         $generator = new Generator();
@@ -74,6 +112,7 @@ class GeneratorTest extends TestCase
         $output = $generator->randomInteger(50, 50);
         $this->assertEquals(50, $output);
 
+        // exception
         $this->expectException(GeneratorException::class);
         $generator->randomInteger(100, 50);
     }

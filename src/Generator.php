@@ -49,6 +49,37 @@ class Generator
     }
 
     /**
+     * A random float between $min and $max, to $decimal_places accuracy.
+     * This is inclusive -> $min and $max are possible outcomes
+     *
+     * @param float|null $min
+     * @param float|null $max
+     * @param int|null $decimal_places
+     * @return int
+     * @throws GeneratorException
+     */
+    public function randomFloat(?float $min = 5, ?float $max = 1000, ?int $decimal_places = null): ?float
+    {
+        if ($min > $max) {
+            throw new GeneratorException('The max value must be above the minimum value');
+        }
+
+        $factor = $this->randomInteger();
+
+        // Return random float number
+        $calculated_max = ($max * $factor);
+        $calculated_min = ($min * $factor);
+
+        $value = $this->randomInteger($calculated_min, $calculated_max) / $factor;
+
+        if ($decimal_places) {
+            $value = round($value, $decimal_places);
+        }
+
+        return (float)$value;
+    }
+
+    /**
      * A random integer between $min and $max
      * This is inclusive -> $min and $max are possible outcomes
      *

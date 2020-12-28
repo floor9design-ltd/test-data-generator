@@ -37,6 +37,16 @@ namespace Floor9design\TestDataGenerator;
  */
 class Generator
 {
+    /**
+     * A random boolean
+     *
+     * @return bool
+     * @throws GeneratorException
+     */
+    public function randomBoolean(): ?bool
+    {
+        return (bool)$this->randomInteger(0, 1);
+    }
 
     /**
      * A random integer between $min and $max
@@ -83,6 +93,30 @@ class Generator
     }
 
     /**
+     * Returns a random MySQL Date : Y-m-d
+     *
+     * @param string|null $format
+     * @return string
+     * @throws GeneratorException
+     */
+    public function randomMySqlDate(?string $format = 'Y-m-d'): string
+    {
+        return date($format, $this->randomMySqlDateTimeTimestamp());
+    }
+
+    /**
+     * Returns a MySQLDateTime string : Y-m-d H:i:s
+     *
+     * @param string|null $format
+     * @return string
+     * @throws GeneratorException
+     */
+    public function randomMySqlDateTime(?string $format = 'Y-m-d H:i:s'): string
+    {
+        return date($format, $this->randomMySqlDateTimeTimestamp());
+    }
+
+    /**
      * Returns a random string
      *
      * @param int|null $length
@@ -121,29 +155,7 @@ class Generator
         return $string_array;
     }
 
-    /**
-     * Returns a random MySQL Date : Y-m-d
-     *
-     * @param string|null $format
-     * @return string
-     * @throws GeneratorException
-     */
-    public function randomMySqlDate(?string $format = 'Y-m-d'): string
-    {
-        return date($format, $this->randomMySqlDateTimeTimestamp());
-    }
-
-    /**
-     * Returns a MySQLDateTime string : Y-m-d H:i:s
-     *
-     * @param string|null $format
-     * @return string
-     * @throws GeneratorException
-     */
-    public function randomMySqlDateTime(?string $format = 'Y-m-d H:i:s'): string
-    {
-        return date($format, $this->randomMySqlDateTimeTimestamp());
-    }
+    // Internal functions
 
     /**
      * Returns a timestamp inside MySQL's date/datetime range

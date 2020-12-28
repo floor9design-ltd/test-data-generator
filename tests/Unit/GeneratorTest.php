@@ -45,6 +45,13 @@ use PHPUnit\Framework\TestCase;
  */
 class GeneratorTest extends TestCase
 {
+    public function testRandomBoolean()
+    {
+        $generator = new Generator();
+
+        $this->assertIsBool($generator->randomBoolean());
+    }
+
     public function testRandomInteger()
     {
         $generator = new Generator();
@@ -96,6 +103,22 @@ class GeneratorTest extends TestCase
         $generator->randomIntegerArray(100, 50, 3);
     }
 
+    public function testRandomMySqlDate()
+    {
+        $generator = new Generator();
+
+        // test it is a valid time:
+        $this->assertIsInt(strtotime($generator->randomMySqlDate()));
+    }
+
+    public function testRandomMySqlDateTime()
+    {
+        $generator = new Generator();
+
+        // test it is a valid time:
+        $this->assertIsInt(strtotime($generator->randomMySqlDateTime()));
+    }
+
     public function testRandomString()
     {
         $generator = new Generator();
@@ -138,22 +161,6 @@ class GeneratorTest extends TestCase
         // test empty
         $output = $generator->randomStringArray(5, 0);
         $this->assertEquals(0, count($output));
-    }
-
-    public function testRandomMySqlDate()
-    {
-        $generator = new Generator();
-
-        // test it is a valid time:
-        $this->assertIsInt(strtotime($generator->randomMySqlDate()));
-    }
-
-    public function testRandomMySqlDateTime()
-    {
-        $generator = new Generator();
-
-        // test it is a valid time:
-        $this->assertIsInt(strtotime($generator->randomMySqlDateTime()));
     }
 
 }

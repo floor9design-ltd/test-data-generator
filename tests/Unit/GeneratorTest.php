@@ -96,5 +96,49 @@ class GeneratorTest extends TestCase
         $generator->randomIntegerArray(100, 50, 3);
 
     }
+
+    public function testRandomString()
+    {
+        $generator = new Generator();
+
+        // test for string
+        $this->assertIsString($generator->randomString());
+
+        // test length
+        $length = 5;
+        $string = $generator->randomString($length);
+        $this->assertSame($length, strlen($string));
+
+        // test 0
+        $length = 0;
+        $string = $generator->randomString($length);
+        $this->assertSame($length, strlen($string));
+
+        // test long length
+        $length = 25;
+        $string = $generator->randomString($length);
+        $this->assertSame($length, strlen($string));
+    }
+
+    public function testRandomStringArray()
+    {
+        $generator = new Generator();
+
+        // test for strings
+        $output = $generator->randomStringArray();
+        $this->assertIsArray($output);
+
+        foreach($output as $should_be_string) {
+            $this->assertIsString($should_be_string);
+        }
+
+        // test size
+        $output = $generator->randomStringArray(5, 10);
+        $this->assertEquals(5, count($output));
+
+        // test empty
+        $output = $generator->randomStringArray(0, 10);
+        $this->assertEquals(0, count($output));
+    }
 }
 

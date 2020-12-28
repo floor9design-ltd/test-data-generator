@@ -57,21 +57,22 @@ class Generator
     }
 
     /**
-     * Returns and array of random integer between $min and $max, as per randomInteger
+     * Returns an array of random integers between $min and $max, as per randomInteger
      *
      * @param int|null $min
      * @param int|null $max
-     * @param int|null $length
+     * @param int|null $array_length
      * @return array
      * @throws GeneratorException
+     * @see randomInteger()
      */
-    public function randomIntegerArray(?int $min = 1, ?int $max = 1000, ?int $length = 3): array
+    public function randomIntegerArray(?int $min = 1, ?int $max = 1000, ?int $array_length = 3): array
     {
         $int_array = [];
         $total = 1;
 
         try {
-            while ($total <= $length) {
+            while ($total <= $array_length) {
                 $int_array[] = $this->randomInteger($min, $max);
                 $total++;
             }
@@ -79,6 +80,45 @@ class Generator
             throw new GeneratorException('Generator::randomIntegerArray() threw an Exception: ' . $e->getMessage());
         }
         return $int_array;
+    }
+
+    /**
+     * Returns a random string
+     *
+     * @param int|null $length
+     * @return string
+     */
+    public function randomString(?int $length = 10): string
+    {
+        $output = '';
+
+        while(strlen($output) < $length) {
+            $output .= md5(rand());
+        }
+
+        // trim it back down to the correct length:
+        return substr($output,0,$length);
+    }
+
+    /**
+     * Returns an array of strings, as per randomString
+     *
+     * @param int|null $length
+     * @param int|null $array_length
+     * @return array
+     * @see randomString()
+     */
+    public function randomStringArray(?int $length = 5, ?int $array_length = 5): array
+    {
+        $string_array = [];
+        $total = 1;
+
+        while ($total <= $length) {
+            $string_array[] = $this->randomString($length);
+            $total++;
+        }
+
+        return $string_array;
     }
 
 }

@@ -37,6 +37,8 @@ namespace Floor9design\TestDataGenerator;
  */
 class Generator
 {
+    // Base functions
+
     /**
      * A random boolean
      *
@@ -136,15 +138,17 @@ class Generator
     }
 
     /**
-     * Returns a MySQLDateTime string : Y-m-d H:i:s
+     * Returns a timestamp inside MySQL's date/datetime range
      *
-     * @param string|null $format
-     * @return string
+     * The supported range is from '1000-01-01' to '9999-12-31':
+     * In timestamps: -30610223999, 253402300799
+     *
+     * @return int
      * @throws GeneratorException
      */
-    public function randomMySqlDateTime(?string $format = 'Y-m-d H:i:s'): string
+    public function randomMySqlDateTimeTimestamp(): int
     {
-        return date($format, $this->randomMySqlDateTimeTimestamp());
+        return $this->randomInteger(-30610223999, 253402300799);
     }
 
     /**
@@ -186,19 +190,34 @@ class Generator
         return $string_array;
     }
 
-    // Internal functions
+    // Shortcut/aliases
 
     /**
-     * Returns a timestamp inside MySQL's date/datetime range
+     * A random float between $min and $max, to 2 decimal places accuracy, with defaults to match a normal currency
+     * amount.
+     * This is inclusive -> $min and $max are possible outcomes
      *
-     * The supported range is from '1000-01-01' to '9999-12-31':
-     * In timestamps: -30610223999, 253402300799
-     *
+     * @param float|null $min
+     * @param float|null $max
+     * @param int|null $decimal_places
      * @return int
      * @throws GeneratorException
      */
-    private function randomMySqlDateTimeTimestamp(): int
+    public function randomCurrency(?float $min = 5, ?float $max = 1000, ?int $decimal_places = 2): ?float
     {
-        return $this->randomInteger(-30610223999, 253402300799);
+        return $this->randomFloat($min, $max, $decimal_places);
     }
+
+    /**
+     * Returns a MySQLDateTime string : Y-m-d H:i:s
+     *
+     * @param string|null $format
+     * @return string
+     * @throws GeneratorException
+     */
+    public function randomMySqlDateTime(?string $format = 'Y-m-d H:i:s'): string
+    {
+        return date($format, $this->randomMySqlDateTimeTimestamp());
+    }
+
 }

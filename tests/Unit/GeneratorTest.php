@@ -45,6 +45,14 @@ use PHPUnit\Framework\TestCase;
  */
 class GeneratorTest extends TestCase
 {
+    // Core functions
+
+    /**
+     * Tests Generator::randomBoolean()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
     public function testRandomBoolean()
     {
         $generator = new Generator();
@@ -52,6 +60,12 @@ class GeneratorTest extends TestCase
         $this->assertIsBool($generator->randomBoolean());
     }
 
+    /**
+     * Tests Generator::randomFloat()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
     public function testRandomFloat()
     {
         $generator = new Generator();
@@ -90,6 +104,12 @@ class GeneratorTest extends TestCase
         $generator->randomFloat(100, 50);
     }
 
+    /**
+     * Tests Generator::randomInteger()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
     public function testRandomInteger()
     {
         $generator = new Generator();
@@ -117,6 +137,12 @@ class GeneratorTest extends TestCase
         $generator->randomInteger(100, 50);
     }
 
+    /**
+     * Tests Generator::randomIntegerArray()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
     public function testRandomIntegerArray()
     {
         $generator = new Generator();
@@ -142,6 +168,12 @@ class GeneratorTest extends TestCase
         $generator->randomIntegerArray(100, 50, 3);
     }
 
+    /**
+     * Tests Generator::randomMySqlDate()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
     public function testRandomMySqlDate()
     {
         $generator = new Generator();
@@ -150,14 +182,33 @@ class GeneratorTest extends TestCase
         $this->assertIsInt(strtotime($generator->randomMySqlDate()));
     }
 
-    public function testRandomMySqlDateTime()
+    /**
+     * Tests Generator::randomMySqlDateTimeTimestamp()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
+    public function testRandomMySqlDateTimeTimestamp()
     {
         $generator = new Generator();
 
+        $output = $generator->randomMySqlDateTimeTimestamp();
+
         // test it is a valid time:
-        $this->assertIsInt(strtotime($generator->randomMySqlDateTime()));
+        $this->assertIsInt($output);
+
+        // above the bottom MySql bound
+        $this->assertTrue($output >= -30610223999);
+
+        // below the top MySql bound
+        $this->assertTrue($output <= 253402300799);
+
     }
 
+    /**
+     * Tests Generator::randomString()
+     * @see Generator
+     */
     public function testRandomString()
     {
         $generator = new Generator();
@@ -181,6 +232,10 @@ class GeneratorTest extends TestCase
         $this->assertSame($length, strlen($string));
     }
 
+    /**
+     * Tests Generator::randomStringArray()
+     * @see Generator
+     */
     public function testRandomStringArray()
     {
         $generator = new Generator();
@@ -200,6 +255,56 @@ class GeneratorTest extends TestCase
         // test empty
         $output = $generator->randomStringArray(5, 0);
         $this->assertEquals(0, count($output));
+    }
+
+    // Aliases
+
+    /**
+     * Tests Generator::randomCurrency()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
+    public function testRandomCurrency()
+    {
+        $generator = new Generator();
+
+        // no bounds
+        $output = $generator->randomCurrency();
+        $this->assertIsFloat($output);
+
+        // above the bottom default bound
+        $this->assertTrue($output > 4);
+
+        // below the top bound
+        $this->assertTrue($output < 1001);
+
+        // decimal places
+        $expected_decimal_places = 2;
+
+        if ((int)$output == $output) {
+            $decimal_places = 0;
+        } else {
+            $decimal_places = strlen($output) - strrpos($output, '.') - 1;
+        }
+        $this->assertTrue($decimal_places <= $expected_decimal_places);
+
+        // Exception
+        $this->expectException(GeneratorException::class);
+        $generator->randomCurrency(100, 50);
+    }
+
+    /**
+     * Tests Generator::randomMySqlDateTime()
+     *
+     * @throws GeneratorException
+     */
+    public function testRandomMySqlDateTime()
+    {
+        $generator = new Generator();
+
+        // test it is a valid time:
+        $this->assertIsInt(strtotime($generator->randomMySqlDateTime()));
     }
 
 }

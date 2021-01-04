@@ -27,8 +27,6 @@ simply centralises this code.
 
 ## Install
 
-To be updated: 
-
 Via Composer
 
 ``` bash
@@ -41,7 +39,10 @@ To be completed
 
 ## Setup
 
-To be completed
+In a composer/PSR compliant system, this should be automatically included. If your system works anothr way, this can
+be easily included.
+
+Note that it is in its own namespace, so should not clash with your other classes/methods.
 
 ## Testing
 

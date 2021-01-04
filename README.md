@@ -35,12 +35,12 @@ composer require floor9design/test-data-generator
 
 ## Usage
 
-To be completed
+* [Usage](docs/project/usage.md)
 
 ## Setup
 
-In a composer/PSR compliant system, this should be automatically included. If your system works anothr way, this can
-be easily included.
+This is a simple class, so minimal setup is required. In a composer/PSR compliant system, this should be automatically 
+included. If your system works anothr way, this can be easily included.
 
 Note that it is in its own namespace, so should not clash with your other classes/methods.
 

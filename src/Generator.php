@@ -217,7 +217,10 @@ class Generator
      */
     public function randomImageSrc(?string $suffix = '.png', ?int $length = 8): string
     {
-        return $this->randomString($length) . $suffix;
+        $response = $this->randomString($length) . $suffix;
+
+        // lower case to resemble a websafe src
+        return strtolower($response);
     }
 
     /**
@@ -233,9 +236,10 @@ class Generator
         ?string $image_src_suffix = '.png',
         ?int $image_src_length = 8,
         ?string $url_suffix = '.com',
-        ?int $url_length = 12
+        ?int $url_length = 12,
+        ?bool $protocol = true
     ): string {
-        $response = $this->randomUrl($url_suffix, $url_length);
+        $response = $this->randomUrl($url_suffix, $url_length, $protocol);
         $response .= '/';
         $response .= $this->randomImageSrc($image_src_suffix, $image_src_length);
 
@@ -271,7 +275,8 @@ class Generator
         }
         $response .= $this->randomString($length) . $suffix;
 
-        return $response;
+        // lower case to resemble a url
+        return strtolower($response);
     }
 
 }

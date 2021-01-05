@@ -179,10 +179,33 @@ There are also some preformatted/special string aliases:
 use Floor9design\TestDataGenerator\Generator;
 $generator = new Generator();
 
-// Set some bounds up:
+// Create a url:
 $random_url = $generator->randomUrl();
-// returns an random url style string: 
+// returns a random url style string: http://frdtbshsld.com
 
-$array_of_strings = $generator->randomStringArray($length, $array_length);
-// returns an array of 3 strings of length 5. e.g: [HyDST, aKjhD, ojkla]
+// create a configured url
+$random_url_configured = $generator->randomUrl('.org', 6, false);
+// returns a random url style string with .org suffix, 6 character long domain and no protocol: bshsld.org
 
+// Create an image src:
+$random_src = $generator->randomImageSrc();
+// returns a random src style string: aefrstde.png
+
+
+// Create a configured image src:
+$random_src = $generator->randomImageSrc('.jpg', 3);
+// returns a random src style string: tde.jpg
+
+// Create an image url:
+$random_src = $generator->randomImageUrl();
+// returns a random src style string: http://frdtbshsld.com/aefrstde.png
+
+// create a configured url
+$random_url_configured = $generator->randomImageUrl('.jpg', 5, '.org', 6, false);
+// returns a random url style string with:
+// .jpg image suffix, 5 chars long
+// a domain with a .org suffix, 6 character long domain and no protocol
+// bshsld.org/frdst.jpg
+
+
+```

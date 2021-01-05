@@ -344,14 +344,16 @@ class GeneratorTest extends TestCase
         $this->assertEquals('.png', substr($output, -4));
 
         // bounds and changes
-        $output = $generator->randomImageSrc('.jpg', 7);
+        $output = $generator->randomImageUrl('.jpg', 7, '.com', 4, false);
 
         // check length
-        $this->assertEquals(11, strlen($output));
+        $this->assertEquals(20, strlen($output));
 
         // check suffix
         $this->assertEquals('.jpg', substr($output, -4));
 
+        // check lowercase
+        $this->assertFalse(preg_match("/[A-Z0-9]/", $output)===0);
     }
 
     /**
@@ -397,6 +399,9 @@ class GeneratorTest extends TestCase
 
         // check suffix
         $this->assertEquals('.org', substr($output, -4));
+
+        // check lowercase
+        $this->assertFalse(preg_match("/[A-Z0-9]/", $output)===0);
 
     }
 

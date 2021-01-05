@@ -209,6 +209,40 @@ class Generator
     }
 
     /**
+     * A random string that looks like an image src.
+     *
+     * @param string|null $suffix
+     * @param int|null $length length of the string before the suffix
+     * @return string
+     */
+    public function randomImageSrc(?string $suffix = '.png', ?int $length = 8): string
+    {
+        return $this->randomString($length) . $suffix;
+    }
+
+    /**
+     * A random string that looks like an image url.
+     *
+     * @param string|null $image_src_suffix
+     * @param int|null $image_src_length
+     * @param string|null $url_suffix
+     * @param int|null $url_length
+     * @return string
+     */
+    public function randomImageUrl(
+        ?string $image_src_suffix = '.png',
+        ?int $image_src_length = 8,
+        ?string $url_suffix = '.com',
+        ?int $url_length = 12
+    ): string {
+        $response = $this->randomUrl($url_suffix, $url_length);
+        $response .= '/';
+        $response .= $this->randomImageSrc($image_src_suffix, $image_src_length);
+
+        return $response;
+    }
+
+    /**
      * Returns a MySQLDateTime string : Y-m-d H:i:s
      *
      * @param string|null $format
@@ -218,6 +252,18 @@ class Generator
     public function randomMySqlDateTime(?string $format = 'Y-m-d H:i:s'): string
     {
         return date($format, $this->randomMySqlDateTimeTimestamp());
+    }
+
+    /**
+     * A random string that looks like a website url.
+     *
+     * @param string|null $suffix of the generated domain
+     * @param int|null $length length of the string before the suffix
+     * @return string
+     */
+    public function randomUrl(?string $suffix = '.com', ?int $length = 12): string
+    {
+        return $this->randomString($length) . $suffix;
     }
 
 }

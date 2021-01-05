@@ -295,6 +295,66 @@ class GeneratorTest extends TestCase
     }
 
     /**
+     * Tests Generator::randomImageSrc()
+     *
+     * @see Generator
+     */
+    public function testRandomImageSrc()
+    {
+        $generator = new Generator();
+
+        // no bounds
+        $output = $generator->randomImageSrc();
+        $this->assertIsString($output);
+
+        // check length
+        $this->assertEquals(12, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.png', substr($output, -4));
+
+        // bounds and changes
+        $output = $generator->randomImageSrc('.jpg', 7);
+
+        // check length
+        $this->assertEquals(11, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.jpg', substr($output, -4));
+
+    }
+
+    /**
+     * Tests Generator::randomImageUrl()
+     *
+     * @see Generator
+     */
+    public function testRandomImageUrl()
+    {
+        $generator = new Generator();
+
+        // no bounds
+        $output = $generator->randomImageUrl();
+        $this->assertIsString($output);
+
+        // check length
+        $this->assertEquals(29, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.png', substr($output, -4));
+
+        // bounds and changes
+        $output = $generator->randomImageSrc('.jpg', 7);
+
+        // check length
+        $this->assertEquals(11, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.jpg', substr($output, -4));
+
+    }
+
+    /**
      * Tests Generator::randomMySqlDateTime()
      *
      * @throws GeneratorException
@@ -305,6 +365,36 @@ class GeneratorTest extends TestCase
 
         // test it is a valid time:
         $this->assertIsInt(strtotime($generator->randomMySqlDateTime()));
+    }
+
+    /**
+     * Tests Generator::randomUrl()
+     *
+     * @see Generator
+     */
+    public function testRandomUrl()
+    {
+        $generator = new Generator();
+
+        // no bounds
+        $output = $generator->randomUrl();
+        $this->assertIsString($output);
+
+        // check length
+        $this->assertEquals(16, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.com', substr($output, -4));
+
+        // bounds and changes
+        $output = $generator->randomImageSrc('.org', 7);
+
+        // check length
+        $this->assertEquals(11, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.org', substr($output, -4));
+
     }
 
 }

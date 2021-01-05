@@ -169,3 +169,20 @@ $array_of_strings = $generator->randomStringArray($length, $array_length);
 // returns an array of 3 strings of length 5. e.g: [HyDST, aKjhD, ojkla]
 ```
 
+There are also some preformatted/special string aliases:
+
+* `Generator::randomUrl()`
+* `Generator::randomImageSrc()`
+* `Generator::randomImageUrl()`
+
+```php
+use Floor9design\TestDataGenerator\Generator;
+$generator = new Generator();
+
+// Set some bounds up:
+$random_url = $generator->randomUrl();
+// returns an random url style string: 
+
+$array_of_strings = $generator->randomStringArray($length, $array_length);
+// returns an array of 3 strings of length 5. e.g: [HyDST, aKjhD, ojkla]
+

@@ -259,11 +259,19 @@ class Generator
      *
      * @param string|null $suffix of the generated domain
      * @param int|null $length length of the string before the suffix
+     * @param bool|null $protocol
      * @return string
      */
-    public function randomUrl(?string $suffix = '.com', ?int $length = 12): string
+    public function randomUrl(?string $suffix = '.com', ?int $length = 12, ?bool $protocol = true): string
     {
-        return $this->randomString($length) . $suffix;
+        $response = '';
+
+        if($protocol) {
+            $response .= 'http://';
+        }
+        $response .= $this->randomString($length) . $suffix;
+
+        return $response;
     }
 
 }

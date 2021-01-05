@@ -338,7 +338,7 @@ class GeneratorTest extends TestCase
         $this->assertIsString($output);
 
         // check length
-        $this->assertEquals(29, strlen($output));
+        $this->assertEquals(36, strlen($output));
 
         // check suffix
         $this->assertEquals('.png', substr($output, -4));
@@ -381,13 +381,16 @@ class GeneratorTest extends TestCase
         $this->assertIsString($output);
 
         // check length
-        $this->assertEquals(16, strlen($output));
+        $this->assertEquals(23, strlen($output));
 
         // check suffix
         $this->assertEquals('.com', substr($output, -4));
 
+        // check prefix
+        $this->assertEquals('http://', substr($output, 0, 7));
+
         // bounds and changes
-        $output = $generator->randomImageSrc('.org', 7);
+        $output = $generator->randomUrl('.org', 7, false);
 
         // check length
         $this->assertEquals(11, strlen($output));

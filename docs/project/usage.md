@@ -206,6 +206,32 @@ $random_url_configured = $generator->randomImageUrl('.jpg', 5, '.org', 6, false)
 // .jpg image suffix, 5 chars long
 // a domain with a .org suffix, 6 character long domain and no protocol
 // bshsld.org/frdst.jpg
+```
 
+### Json
 
+Json can be created as follows:
+
+* `Generator::randomJson()`
+
+This function creates a json string with a combination of different json elements:
+
+* arrays
+* booleans 
+* floats
+* integers
+* strings
+
+Note that the return order has `shuffle()` applied to it, so they are in a more random
+order.
+
+```php
+use Floor9design\TestDataGenerator\Generator;
+$generator = new Generator();
+
+$json = $generator->randomJson();
+// returns a json object with 3 of each element types 
+
+$json_arrays_only = $generator->randomJson(5, 0, 0, 0, 0);
+// returns a json object with only 5 arrays
 ```

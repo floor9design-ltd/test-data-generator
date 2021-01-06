@@ -126,6 +126,64 @@ class Generator
     }
 
     /**
+     * Returns a json string of a with the specified number of types
+     *
+     * @param int|null $key_length
+     * @param int|null $number_of_arrays
+     * @param int|null $number_of_bools
+     * @param int|null $number_of_floats
+     * @param int|null $number_of_ints
+     * @param int|null $number_of_strings
+     * @return string
+     * @see randomString()
+     */
+    public function randomJson(
+        ?int $number_of_arrays = 3,
+        ?int $number_of_booleans = 3,
+        ?int $number_of_floats = 3,
+        ?int $number_of_integers = 3,
+        ?int $number_of_strings = 3
+    ): string
+    {
+        $json_array = [];
+
+        $total = 1;
+        while ($total <= $number_of_arrays) {
+            $json_array[$this->randomString(5)] = $this->randomStringArray();
+            $total++;
+        }
+
+        $total = 1;
+        while ($total <= $number_of_booleans) {
+            $json_array[$this->randomString(5)] = $this->randomBoolean();
+            $total++;
+        }
+
+        $total = 1;
+        while ($total <= $number_of_floats) {
+            $json_array[$this->randomString(5)] = $this->randomFloat();
+            $total++;
+        }
+
+        $total = 1;
+        while ($total <= $number_of_integers) {
+            $json_array[$this->randomString(5)] = $this->randomInteger();
+            $total++;
+        }
+
+        $total = 1;
+        while ($total <= $number_of_strings) {
+            $json_array[$this->randomString(5)] = $this->randomString();
+            $total++;
+        }
+
+        // shuffle items to arrange in a more "real" way
+        shuffle($json_array);
+
+        return json_encode($json_array);
+    }
+
+    /**
      * Returns a random MySQL Date : Y-m-d
      *
      * @param string|null $format

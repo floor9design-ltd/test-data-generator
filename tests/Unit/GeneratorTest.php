@@ -169,6 +169,85 @@ class GeneratorTest extends TestCase
     }
 
     /**
+     * Tests Generator::randomJson()
+     *
+     * @see Generator
+     * @throws GeneratorException
+     */
+    public function testRandomJson()
+    {
+        $generator = new Generator();
+
+        // test arrays
+        $output = $generator->randomJson(5, 0, 0, 0, 0);
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(5, $json_decoded);
+
+        foreach ($json_decoded as $should_be_array) {
+            $this->assertIsArray($should_be_array);
+        }
+
+        // test booleans
+        $output = $generator->randomJson(0, 5, 0, 0, 0);
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(5, $json_decoded);
+
+        foreach ($json_decoded as $should_be_boolean) {
+            $this->assertIsBool($should_be_boolean);
+        }
+
+        // test floats
+        $output = $generator->randomJson(0, 0, 5, 0, 0);
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(5, $json_decoded);
+
+        foreach ($json_decoded as $should_be_float) {
+            $this->assertIsFloat($should_be_float);
+        }
+
+        // test integers
+        $output = $generator->randomJson(0, 0, 0, 5, 0);
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(5, $json_decoded);
+
+        foreach ($json_decoded as $should_be_integer) {
+            $this->assertIsInt($should_be_integer);
+        }
+
+        // test strings
+        $output = $generator->randomJson(0, 0, 0, 0, 5);
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(5, $json_decoded);
+
+        foreach ($json_decoded as $should_be_string) {
+            $this->assertIsString($should_be_string);
+        }
+
+        // Mixed tests
+        $output = $generator->randomJson();
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(15, $json_decoded);
+    }
+
+    /**
      * Tests Generator::randomMySqlDate()
      *
      * @see Generator

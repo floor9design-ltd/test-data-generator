@@ -153,7 +153,7 @@ $string_with_bounds = $generator->randomString($length);
 // returns a string of length 10. e.g: hDezs
 ```
 
-In the case where you need an array of strings, such as an array of ID's:
+In the case where you need an array of strings:
 
 * `Generator::randomStringArray()`
 

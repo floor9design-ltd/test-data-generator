@@ -79,6 +79,6 @@ A changelog is generated here:
 
 ## License
 
-MIT
+## License
 
-* [License](LICENCE.md)
+* [MIT](LICENCE.md)

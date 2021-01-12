@@ -53,7 +53,7 @@ composer require floor9design/test-data-generator
 ## Setup
 
 This is a simple class, so minimal setup is required. In a composer/PSR compliant system, this should be automatically 
-included. If your system works anothr way, this can be easily included.
+included. If your system works another way, this can be easily included.
 
 Note that it is in its own namespace, so should not clash with your other classes/methods.
 

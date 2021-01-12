@@ -59,9 +59,7 @@ Note that it is in its own namespace, so should not clash with your other classe
 
 ## Testing
 
-Tests under development and are underway.
-
-To run the existing tests: 
+To run the tests: 
 
 * `./vendor/phpunit/phpunit/phpunit`
 

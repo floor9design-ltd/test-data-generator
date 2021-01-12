@@ -79,6 +79,4 @@ A changelog is generated here:
 
 ## License
 
-## License
-
 * [MIT](LICENCE.md)

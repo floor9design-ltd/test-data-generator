@@ -19,7 +19,7 @@ mind that it is [Faker is retired](https://marmelab.com/blog/2020/10/21/sunsetti
 
 Some of the included functions are very simple, but the small amounts of code, such as filtering or formatting add up 
 to a lot of duplication. In fact, this is the reason the package came about. It simply centralises this code, allowing
-a centralised point to catch all this nuance. 
+a single point to catch all this nuance. 
 
 For example; it is simple to create a random date string, however there are several traps for random generation. MySQL 
 date strings have bounds (after 1000-01-01), MySQL dates are padded with zeros (February is 02, not 2) and so on and so 

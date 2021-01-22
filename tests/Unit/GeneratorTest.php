@@ -86,7 +86,7 @@ class GeneratorTest extends TestCase
 
         // edge case
         $output = $generator->randomFloat(50, 50);
-        $this->assertEquals(50, $output);
+        $this->assertIsFloat($output);
 
         // decimal places
         $expected_decimal_places = 2;
@@ -211,7 +211,11 @@ class GeneratorTest extends TestCase
         $this->assertCount(5, $json_decoded);
 
         foreach ($json_decoded as $should_be_float) {
-            $this->assertIsFloat($should_be_float);
+            // as it's gone through the process of being made into json cast info is lost, so 50 float is now 50 int:
+            $cast_float = (float)$should_be_float;
+            $this->assertIsFloat($cast_float);
+            // check that they're equivalent
+            $this->assertEquals($cast_float, $should_be_float);
         }
 
         // test integers

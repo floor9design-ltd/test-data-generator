@@ -47,7 +47,8 @@ class Generator
      */
     public function randomBoolean(): ?bool
     {
-        return (bool)$this->randomInteger(0, 1);
+        // (int) rounds down, make a bool out of (int)0-2
+        return (bool)((int)$this->randomInteger(0, 2));
     }
 
     /**

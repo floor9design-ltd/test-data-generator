@@ -150,31 +150,31 @@ class Generator
 
         $total = 1;
         while ($total <= $number_of_arrays) {
-            $json_array[$this->randomString(5)] = $this->randomStringArray();
+            $json_array['arrays' . $total] = $this->randomStringArray();
             $total++;
         }
 
         $total = 1;
         while ($total <= $number_of_booleans) {
-            $json_array[$this->randomString(5)] = $this->randomBoolean();
+            $json_array['booleans' . $total] = $this->randomBoolean();
             $total++;
         }
 
         $total = 1;
         while ($total <= $number_of_floats) {
-            $json_array[$this->randomString(5)] = $this->randomFloat();
+            $json_array['floats' . $total] = $this->randomFloat();
             $total++;
         }
 
         $total = 1;
         while ($total <= $number_of_integers) {
-            $json_array[$this->randomString(5)] = $this->randomInteger();
+            $json_array['integers' . $total] = $this->randomInteger();
             $total++;
         }
 
         $total = 1;
         while ($total <= $number_of_strings) {
-            $json_array[$this->randomString(5)] = $this->randomString();
+            $json_array['strings' . $total] = $this->randomString();
             $total++;
         }
 

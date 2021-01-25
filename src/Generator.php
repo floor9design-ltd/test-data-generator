@@ -129,13 +129,13 @@ class Generator
     /**
      * Returns a json string of a with the specified number of types
      *
-     * @param int|null $key_length
      * @param int|null $number_of_arrays
-     * @param int|null $number_of_bools
+     * @param int|null $number_of_booleans
      * @param int|null $number_of_floats
-     * @param int|null $number_of_ints
+     * @param int|null $number_of_integers
      * @param int|null $number_of_strings
      * @return string
+     * @throws GeneratorException
      * @see randomString()
      */
     public function randomJson(

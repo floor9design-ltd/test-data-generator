@@ -10,7 +10,7 @@ env:
 
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source --dev
+  - travis_retry composer install --no-interaction --prefer-source
 
 script:
   - ./vendor/phpunit/phpunit/phpunit --coverage-html docs/tests/

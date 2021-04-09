@@ -45,7 +45,7 @@ class Generator
      * @return bool
      * @throws GeneratorException
      */
-    public function randomBoolean(): ?bool
+    public function randomBoolean(): bool
     {
         // (int) rounds down, make a bool out of (int)0-2
         return (bool)((int)$this->randomInteger(0, 2));
@@ -58,10 +58,10 @@ class Generator
      * @param float|null $min
      * @param float|null $max
      * @param int|null $decimal_places
-     * @return int
+     * @return float
      * @throws GeneratorException
      */
-    public function randomFloat(?float $min = 5, ?float $max = 1000, ?int $decimal_places = null): ?float
+    public function randomFloat(?float $min = 5, ?float $max = 1000, ?int $decimal_places = null): float
     {
         if ($min > $max) {
             throw new GeneratorException('The max value must be above the minimum value');
@@ -91,7 +91,7 @@ class Generator
      * @return int
      * @throws GeneratorException
      */
-    public function randomInteger(?int $min = 1, ?int $max = 1000): ?int
+    public function randomInteger(?int $min = 1, ?int $max = 1000): int
     {
         if ($min > $max) {
             throw new GeneratorException('The max value must be above the minimum value');
@@ -262,7 +262,7 @@ class Generator
      * @return int
      * @throws GeneratorException
      */
-    public function randomCurrency(?float $min = 5, ?float $max = 1000, ?int $decimal_places = 2): ?float
+    public function randomCurrency(?float $min = 5, ?float $max = 1000, ?int $decimal_places = 2): float
     {
         return $this->randomFloat($min, $max, $decimal_places);
     }
@@ -289,6 +289,7 @@ class Generator
      * @param int|null $image_src_length
      * @param string|null $url_suffix
      * @param int|null $url_length
+     * @param bool|null $protocol
      * @return string
      */
     public function randomImageUrl(

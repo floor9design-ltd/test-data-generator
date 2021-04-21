@@ -249,6 +249,24 @@ class GeneratorTest extends TestCase
         $json_decoded = json_decode($output, true);
         $this->assertIsArray($json_decoded);
         $this->assertCount(15, $json_decoded);
+
+
+        // test full
+        $output = $generator->randomJson(5, 5, 5, 5, 5);
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(25, $json_decoded);
+
+        // test empty
+        $output = $generator->randomJson(0, 0, 0, 0, 0);
+        $this->assertIsString($output);
+
+        $json_decoded = json_decode($output, true);
+        $this->assertIsArray($json_decoded);
+        $this->assertCount(0, $json_decoded);
+
     }
 
     /**
@@ -479,6 +497,42 @@ class GeneratorTest extends TestCase
 
         // check length
         $this->assertEquals(11, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.org', substr($output, -4));
+
+        // check lowercase
+        $this->assertFalse(preg_match("/[A-Z0-9]/", $output)===0);
+
+    }
+
+    /**
+     * Tests Generator::randomEmail()
+     *
+     * @see Generator
+     */
+    public function testRandomEmail()
+    {
+        $generator = new Generator();
+
+        // no bounds
+        $output = $generator->randomEmail();
+        $this->assertIsString($output);
+
+        // check length
+        $this->assertEquals(23, strlen($output));
+
+        // check suffix
+        $this->assertEquals('.com', substr($output, -4));
+
+        // check includes @
+        $this->assertStringContainsString('@', $output);
+
+        // bounds and changes
+        $output = $generator->randomEmail('.org', 5, 5);
+
+        // check length
+        $this->assertEquals(15, strlen($output));
 
         // check suffix
         $this->assertEquals('.org', substr($output, -4));

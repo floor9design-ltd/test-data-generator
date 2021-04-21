@@ -339,4 +339,22 @@ class Generator
         return strtolower($response);
     }
 
+    /**
+     * A random string that looks like an email.
+     *
+     * @param string|null $suffix of the generated domain
+     * @param int|null $prefix_length length of the string before the @
+     * @param int|null $domain_length length of the string before the suffix
+     * @return string
+     */
+    public function randomEmail(?string $suffix = '.com', ?int $prefix_length = 6, ?int $domain_length = 12): string
+    {
+        $response = '';
+
+        $response .= $this->randomString($prefix_length) . '@' . $this->randomString($domain_length) . $suffix;
+
+        // lower case to resemble an email
+        return strtolower($response);
+    }
+
 }

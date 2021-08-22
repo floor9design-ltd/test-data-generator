@@ -99,6 +99,18 @@ class GeneratorTest extends TestCase
         }
         $this->assertTrue($decimal_places <= $expected_decimal_places);
 
+        // decimal places alternate route
+        $expected_decimal_places = 2;
+        $output = $generator->randomFloat(50.02, 100.1, $expected_decimal_places);
+
+        if ((int)$output == $output) {
+            $decimal_places = 0;
+        } else {
+            $decimal_places = strlen($output) - strrpos($output, '.') - 1;
+        }
+        $this->assertTrue($decimal_places <= $expected_decimal_places);
+
+
         // Exception
         $this->expectException(GeneratorException::class);
         $generator->randomFloat(100, 50);
@@ -388,6 +400,7 @@ class GeneratorTest extends TestCase
         } else {
             $decimal_places = strlen($output) - strrpos($output, '.') - 1;
         }
+        var_dump($output);
         $this->assertTrue($decimal_places <= $expected_decimal_places);
 
         // Exception

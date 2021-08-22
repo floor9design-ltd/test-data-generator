@@ -67,6 +67,14 @@ Documentation and coverage can be generated as follows:
 
 * `./vendor/phpunit/phpunit/phpunit --coverage-html docs/tests/`
 
+Static analysis/code review can be performed by using [phpstan](https://phpstan.org/):
+
+* `./vendor/bin/phpstan`
+
+Gotcha: sometimes you may need to increase memory on docker containers:
+
+* `./vendor/bin/phpstan --memory-limit=1G`
+
 ## Credits
 
 - [Rick](https://github.com/elb98rm)

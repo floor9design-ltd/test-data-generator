@@ -67,13 +67,23 @@ class Generator
             throw new GeneratorException('The max value must be above the minimum value');
         }
 
+        // convert them to integers (multiply by calculated decimal places eg: 0.2 * 10 = 2):
+        $decimal_places_min =  strlen((string)$min) - strrpos((string)$min, '.') - 1;
+        $decimal_places_max =  strlen((string)$max) - strrpos((string)$max, '.') - 1;
+
+        if($decimal_places_max >= $decimal_places_min) {
+            $calculated_decimal_places = $decimal_places_max;
+        } else {
+            $calculated_decimal_places = $decimal_places_min;
+        }
+
         $factor = $this->randomInteger();
 
-        // Return random float number
-        $calculated_max = ($max * $factor);
-        $calculated_min = ($min * $factor);
+        // Return random int number
+        $calculated_max = (int)($max * $factor * $calculated_decimal_places);
+        $calculated_min = (int)($min * $factor * $calculated_decimal_places);
 
-        $value = $this->randomInteger($calculated_min, $calculated_max) / $factor;
+        $value = $this->randomInteger($calculated_min, $calculated_max) / ($factor * $calculated_decimal_places);
 
         if ($decimal_places) {
             $value = round($value, $decimal_places);
@@ -97,7 +107,7 @@ class Generator
             throw new GeneratorException('The max value must be above the minimum value');
         }
 
-        return mt_rand($min, $max);
+        return mt_rand((int)$min, (int)$max);
     }
 
     /**
@@ -106,7 +116,7 @@ class Generator
      * @param int|null $min
      * @param int|null $max
      * @param int|null $array_length
-     * @return array
+     * @return array<int>
      * @throws GeneratorException
      * @see randomInteger()
      */
@@ -181,7 +191,7 @@ class Generator
         // shuffle items to arrange in a more "real" way
         shuffle($json_array);
 
-        return json_encode($json_array);
+        return (string)json_encode($json_array);
     }
 
     /**
@@ -193,7 +203,7 @@ class Generator
      */
     public function randomMySqlDate(?string $format = 'Y-m-d'): string
     {
-        return date($format, $this->randomMySqlDateTimeTimestamp());
+        return date((string)$format, $this->randomMySqlDateTimeTimestamp());
     }
 
     /**
@@ -221,7 +231,7 @@ class Generator
         $output = '';
 
         while (strlen($output) < $length) {
-            $output .= md5(rand());
+            $output .= md5((string)rand());
         }
 
         // trim it back down to the correct length:
@@ -233,7 +243,7 @@ class Generator
      *
      * @param int|null $length
      * @param int|null $array_length
-     * @return array
+     * @return array<string>
      * @see randomString()
      */
     public function randomStringArray(?int $length = 5, ?int $array_length = 5): array
@@ -259,7 +269,7 @@ class Generator
      * @param float|null $min
      * @param float|null $max
      * @param int|null $decimal_places
-     * @return int
+     * @return float
      * @throws GeneratorException
      */
     public function randomCurrency(?float $min = 5, ?float $max = 1000, ?int $decimal_places = 2): float
@@ -315,7 +325,7 @@ class Generator
      */
     public function randomMySqlDateTime(?string $format = 'Y-m-d H:i:s'): string
     {
-        return date($format, $this->randomMySqlDateTimeTimestamp());
+        return date((string)$format, $this->randomMySqlDateTimeTimestamp());
     }
 
     /**

@@ -198,11 +198,11 @@ $random_src = $generator->randomImageSrc('.jpg', 3);
 
 // Create an image url:
 $random_src = $generator->randomImageUrl();
-// returns a random src style string: http://frdtbshsld.com/aefrstde.png
+// returns a random image url style string: http://frdtbshsld.com/aefrstde.png
 
 // create a configured url
 $random_url_configured = $generator->randomImageUrl('.jpg', 5, '.org', 6, false);
-// returns a random url style string with:
+// returns a random image url style string with:
 // .jpg image suffix, 5 chars long
 // a domain with a .org suffix, 6 character long domain and no protocol
 // bshsld.org/frdst.jpg

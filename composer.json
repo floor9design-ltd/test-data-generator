@@ -23,7 +23,7 @@
         "php" : ">=7.3"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan": "^0.12 || ^1.0",
         "phpunit/phpunit": "^9",
         "mockery/mockery": "dev-master"
     },

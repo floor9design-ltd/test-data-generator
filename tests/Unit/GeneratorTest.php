@@ -400,7 +400,7 @@ class GeneratorTest extends TestCase
         } else {
             $decimal_places = strlen($output) - strrpos($output, '.') - 1;
         }
-        var_dump($output);
+
         $this->assertTrue($decimal_places <= $expected_decimal_places);
 
         // Exception

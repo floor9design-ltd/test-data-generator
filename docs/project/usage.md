@@ -39,7 +39,7 @@ To generate a MySql compatible timestamp:
 use Floor9design\TestDataGenerator\Generator;
 $generator = new Generator();
 
-$float = $generator->randomMySqlDateTimeTimestamp();
+$timestamp = $generator->randomMySqlDateTimeTimestamp();
 // returns a timestamp between '1000-01-01' to '9999-12-31', which is: -30610223999 to 253402300799
 ```
 
@@ -61,7 +61,7 @@ $date_time = $generator->randomMySqlDateTime();
 // returns a date in the form: Y-m-d H:i:s. e.g: 1384-12-28 12:36:23
 
 // Return a custom string:
-$float = $generator->randomMySqlDate('l jS \of F Y h:i:s A');
+$date_string = $generator->randomMySqlDate('l jS \of F Y h:i:s A');
 // returns a custom formatted date: e.g Monday 8th of August 2005 03:12:46 PM
 ```
 
@@ -88,6 +88,8 @@ $float_with_bounds = $generator->randomFloat($min, $max, $decimal_places);
 
 $float_with_silly_bounds = $generator->randomFloat($min, $min);
 // returns a float between 25 and 25 inclusive, which is guaranteed to be: 25
+
+// Note that decimal places are optional in a float. 25 is a float, as is 25.000. Remember to specify this if needed. 
 
 ```
 

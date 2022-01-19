@@ -71,7 +71,7 @@ Static analysis/code review can be performed by using [phpstan](https://phpstan.
 
 * `./vendor/bin/phpstan`
 
-Gotcha: sometimes you may need to increase memory on docker containers:
+Gotcha: sometimes you may need to increase memory on docker/vagrant/virtual containers:
 
 * `./vendor/bin/phpstan --memory-limit=1G`
 

@@ -152,7 +152,7 @@ $string = $generator->randomString();
 $length = 5; 
 
 $string_with_bounds = $generator->randomString($length);
-// returns a string of length 10. e.g: hDezs
+// returns a string of length 5. e.g: hDezs
 ```
 
 In the case where you need an array of strings:

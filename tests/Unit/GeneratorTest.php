@@ -117,7 +117,6 @@ class GeneratorTest extends TestCase
             'randomFloat did not generate the correct decimal places: ' . $decimal_places . ', ' . $expected_decimal_places
         );
 
-
         // Exception
         $this->expectException(GeneratorException::class);
         $generator->randomFloat(100, 50);
@@ -772,6 +771,61 @@ class GeneratorTest extends TestCase
             preg_match("/[A-Z0-9]/", $output) === 0,
             'randomEmail did not generate a lowercase value : ' . $output
         );
+    }
+
+    /**
+     * Tests Generator::randomPassword()
+     *
+     * @see Generator
+     */
+    public function testRandomPassword()
+    {
+        $generator = new Generator();
+
+        // no bounds
+        $output = $generator->randomPassword();
+        $this->assertIsString(
+            $output,
+            'randomPassword did not generate a valid string : ' . $output
+        );
+
+        // check length
+        $this->assertEquals(
+            16,
+            strlen($output),
+            'randomPassword did not generate a valid string length : ' . $output
+        );
+
+        // check contents
+        $this->assertEquals(
+            1,
+            preg_match('/[A-Z]/', $output),
+            'randomPassword did not include a capital letter : ' . $output
+        );
+
+        $this->assertEquals(
+            1,
+            preg_match('/[a-z]/', $output),
+            'randomPassword did not include a lower case letter : ' . $output
+        );
+
+        $this->assertEquals(
+            1,
+            preg_match('/[0-9]/', $output),
+            'randomPassword did not include a number : ' . $output
+        );
+
+        $this->assertEquals(
+            1,
+            // note: https://regex101.com/ is a godsend
+            preg_match('/[!"#\$%&\(\)\*\+,-\.\/:;<\=>\?@\[\]\^_`{\|}~]/', $output),
+            'randomPassword did not include a symbol : ' . $output
+        );
+
+        // Exception
+        $this->expectException(GeneratorException::class);
+        $generator->randomFloat($generator->randomPassword(5));
+
     }
 
 }

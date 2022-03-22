@@ -237,3 +237,30 @@ $json = $generator->randomJson();
 $json_arrays_only = $generator->randomJson(5, 0, 0, 0, 0);
 // returns a json object with only 5 arrays
 ```
+
+### Passwords
+
+Passwords can be created as follows:
+
+* `Generator::randomPassword()`
+
+```php
+use Floor9design\TestDataGenerator\Generator;
+$generator = new Generator();
+
+$password = $generator->randomPassword();
+// returns a 16 character password: eg pA7*MWM32[AI35;  
+
+$password_shorter = $generator->randomPassword(12);
+// returns a 12 character password: eg 5@3qQ4-kUtK#
+```
+Note that passwords:
+
+* have a minimum length of 11
+* include upper and lower case chars
+* include numbers
+* include symbols
+
+This size and complexity ensures an approximate brute-force cracking time of 700 years to at current computational 
+levels. This is above the length of a human lifespan - a sensible default. The default 16 chars would take 400 billion 
+years, which is longer than the estimated age of the universe (approx 13.7 billion years).

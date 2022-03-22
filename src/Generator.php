@@ -367,4 +367,60 @@ class Generator
         return strtolower($response);
     }
 
+    /**
+     * A random string that might be appropriate for passwords
+     *
+     * Mixed chars, mixed case, symbols and a length of 16 creates a password that (at the time of writing)
+     * takes at least four hundred billion years to bruteforce.
+     *
+     * @param int $length minimum size of 11 in order for bruteforce to be longer than a human lifespan
+     * @return string
+     * @throws GeneratorException
+     */
+    public function randomPassword(
+        int $length = 16
+    ) : string
+    {
+        if($length < 11) {
+            throw new GeneratorException('Passwords must be 11 characters long for them to be secure');
+        }
+
+        // have to be a little more thoroughly than $this->randomString()
+
+        $password = [];
+
+        $lower_case_characters = 'abcdefghijklmnopqrstuvwxyz';
+        $uppercase_case_characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $number_characters = '0123456789';
+        $symbol_characters = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~';
+
+        $charsets = [$lower_case_characters, $uppercase_case_characters, $number_characters, $symbol_characters];
+
+        // guaranteed chars:
+        foreach($charsets as $charset) {
+            $char_added = false;
+            while($char_added == false) {
+                $random_key = $this->randomInteger(0, $length-1);
+                if(!isset($password[$random_key])) {
+                    $char_index = $this->randomInteger(0, strlen($charset));
+                    $password[$random_key] = substr($charset, $char_index, 1);
+                    $char_added = true;
+                }
+            }
+        }
+
+        // now fill up with random chars:
+        $key = 0;
+        while($key < $length) {
+            $charset = $charsets[$this->randomInteger(0, 3)];
+            if(!isset($password[$key])) {
+                $char_index = $this->randomInteger(0, strlen($charset));
+                $password[$key] = substr($charset, $char_index, 1);
+            }
+            $key++;
+        }
+
+        return implode($password);
+    }
+
 }

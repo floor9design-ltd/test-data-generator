@@ -818,7 +818,7 @@ class GeneratorTest extends TestCase
         $this->assertEquals(
             1,
             // note: https://regex101.com/ is a godsend
-            preg_match('/[!"#\$%&\(\)\*\+,-\.\/:;<\=>\?@\[\]\^_`{\|}~]/', $output),
+            preg_match('/[!"#$%&()*+,-.\/:;<=>?@[\\]^_`{|}~]/', $output),
             'randomPassword did not include a symbol : ' . $output
         );
 

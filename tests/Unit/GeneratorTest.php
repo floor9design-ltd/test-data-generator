@@ -606,7 +606,7 @@ class GeneratorTest extends TestCase
         // check suffix
         $this->assertEquals(
             '.png',
-            substr($output,-4),
+            substr($output, -4),
             'randomImageUrl did not generate a valid .png string suffix : ' . $output
         );
 
@@ -707,8 +707,8 @@ class GeneratorTest extends TestCase
 
         // check lowercase
         $this->assertFalse(
-            preg_match("/[A-Z0-9]/", $output) === 0,
-            'randomRandomUrl did not generate a lowercase value : ' . $output
+            preg_match("/[A-Z]/", $output) === 1,
+            'randomRandomUrl did not generate a lowercase only value : ' . $output
         );
     }
 
@@ -825,7 +825,6 @@ class GeneratorTest extends TestCase
         // Exception
         $this->expectException(GeneratorException::class);
         $generator->randomFloat($generator->randomPassword(5));
-
     }
 
 }

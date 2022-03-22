@@ -68,10 +68,10 @@ class Generator
         }
 
         // convert them to integers (multiply by calculated decimal places eg: 0.2 * 10 = 2):
-        $decimal_places_min =  strlen((string)$min) - strrpos((string)$min, '.') - 1;
-        $decimal_places_max =  strlen((string)$max) - strrpos((string)$max, '.') - 1;
+        $decimal_places_min = strlen((string)$min) - strrpos((string)$min, '.') - 1;
+        $decimal_places_max = strlen((string)$max) - strrpos((string)$max, '.') - 1;
 
-        if($decimal_places_max >= $decimal_places_min) {
+        if ($decimal_places_max >= $decimal_places_min) {
             $calculated_decimal_places = $decimal_places_max;
         } else {
             $calculated_decimal_places = $decimal_places_min;
@@ -154,8 +154,7 @@ class Generator
         ?int $number_of_floats = 3,
         ?int $number_of_integers = 3,
         ?int $number_of_strings = 3
-    ): string
-    {
+    ): string {
         $json_array = [];
 
         $total = 1;
@@ -340,7 +339,7 @@ class Generator
     {
         $response = '';
 
-        if($protocol) {
+        if ($protocol) {
             $response .= 'http://';
         }
         $response .= $this->randomString($length) . $suffix;
@@ -379,9 +378,8 @@ class Generator
      */
     public function randomPassword(
         int $length = 16
-    ) : string
-    {
-        if($length < 11) {
+    ): string {
+        if ($length < 11) {
             throw new GeneratorException('Passwords must be 11 characters long for them to be secure');
         }
 
@@ -397,12 +395,12 @@ class Generator
         $charsets = [$lower_case_characters, $uppercase_case_characters, $number_characters, $symbol_characters];
 
         // guaranteed chars:
-        foreach($charsets as $charset) {
+        foreach ($charsets as $charset) {
             $char_added = false;
-            while($char_added == false) {
-                $random_key = $this->randomInteger(0, $length-1);
-                if(!isset($password[$random_key])) {
-                    $char_index = $this->randomInteger(0, strlen($charset));
+            while ($char_added == false) {
+                $random_key = $this->randomInteger(0, $length - 1);
+                if (!isset($password[$random_key])) {
+                    $char_index = $this->randomInteger(0, strlen($charset) - 1);
                     $password[$random_key] = substr($charset, $char_index, 1);
                     $char_added = true;
                 }
@@ -411,14 +409,15 @@ class Generator
 
         // now fill up with random chars:
         $key = 0;
-        while($key < $length) {
+        while ($key < $length) {
             $charset = $charsets[$this->randomInteger(0, 3)];
-            if(!isset($password[$key])) {
-                $char_index = $this->randomInteger(0, strlen($charset));
+            if (!isset($password[$key])) {
+                $char_index = $this->randomInteger(0, strlen($charset) - 1);
                 $password[$key] = substr($charset, $char_index, 1);
             }
             $key++;
         }
+        ksort($password);
 
         return implode($password);
     }

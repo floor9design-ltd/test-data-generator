@@ -815,10 +815,53 @@ class GeneratorTest extends TestCase
             'randomPassword did not include a number : ' . $output
         );
 
-        $this->assertEquals(
-            1,
-            // note: https://regex101.com/ is a godsend
-            preg_match('/[!"#$%&()*+,-.\/:;<=>?@[\\]^_`{|}~]/', $output),
+        // regex is annoying unreliable:
+
+        $symbols = [
+            '!',
+            '"',
+            '#',
+            '$',
+            '%',
+            '&',
+            "'",
+            '(',
+            ')',
+            '*',
+            '+',
+            ',',
+            '-',
+            '.',
+            '/',
+            ':',
+            ';',
+            '<',
+            '=',
+            '>',
+            '?',
+            '@',
+            '[',
+            '\\',
+            ']',
+            '^',
+            '_',
+            '`',
+            '{',
+            '|',
+            '}',
+            '~'
+        ];
+
+
+        $found = false;
+        foreach (str_split($output) as $character) {
+            if (in_array($character, $symbols)) {
+                $found = true;
+            }
+        }
+
+        $this->assertTrue(
+            $found,
             'randomPassword did not include a symbol : ' . $output
         );
 

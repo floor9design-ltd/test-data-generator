@@ -383,7 +383,7 @@ class Generator
             throw new GeneratorException('Passwords must be 11 characters long for them to be secure');
         }
 
-        // have to be a little more thoroughly than $this->randomString()
+        // have to be a little more thorough than $this->randomString()
 
         $password = [];
 

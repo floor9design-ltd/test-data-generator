@@ -264,3 +264,8 @@ Note that passwords:
 This size and complexity ensures an approximate brute-force cracking time of 700 years to at current computational 
 levels. This is above the length of a human lifespan - a sensible default. The default 16 chars would take 400 billion 
 years, which is longer than the estimated age of the universe (approx 13.7 billion years).
+
+To make these easily readable, the following related class has a great humaniser function:
+
+* [floor9design/character-humaniser](https://github.com/floor9design-ltd/character-humaniser)
+* Use `humaniseToString()`

@@ -14,10 +14,10 @@
 language: php
 dist: jammy
 php:
-  - '8.0'
+  #- '8.0'
   - '8.1'
-  - '7.4'
-  - '7.3'
+  #- '7.4'
+  #- '7.3'
 
 before_script:
   - travis_retry composer self-update

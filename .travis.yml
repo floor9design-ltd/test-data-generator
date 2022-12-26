@@ -1,21 +1,30 @@
+# .travis.yml
+#
+# Setup for travis-cl.com
+#
+# @category  None
+# @package   /
+# @author    Rick Morice <rick@floor9design.com>
+# @copyright Floor9design Ltd (floor9design.com)
+# @license   Private software
+# @version   1.0
+# @link      https://floor9design.com
+# @link      https://github.com/floor9design-ltd/test-data-generator
+# @since     File available since Release 1.0
 language: php
-dist: bionic
+dist: jammy
 php:
-  - '8.1.0'
   - '8.0'
+  - '8.1'
   - '7.4'
   - '7.3'
-
-env:
-  - XDEBUG_MODE=coverage
 
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction
 
 script:
-  - ./vendor/phpunit/phpunit/phpunit --coverage-html docs/tests/
-  - ./vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml
+  - XDEBUG_MODE=coverage ./vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

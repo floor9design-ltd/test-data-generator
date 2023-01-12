@@ -14,8 +14,10 @@
 ## Introduction
 
 This offers a very simple class offering methods for basic data generation, ideal for unit tests or data filling.
-This is not meant to be an ongoing replacement for [fzaninotto/Faker](https://github.com/fzaninotto/Faker), but bear in 
-mind that it is [Faker is retired](https://marmelab.com/blog/2020/10/21/sunsetting-faker.html).
+This is not meant to be a replacement for [fzaninotto/Faker](https://github.com/fzaninotto/Faker) or 
+[fakerphp/faker](https://github.com/FakerPHP/Faker), but bear in 
+mind that it is [Faker is retired](https://marmelab.com/blog/2020/10/21/sunsetting-faker.html) and both are pretty
+large includes for a production environment.
 
 Some of the included functions are very simple, but the small amounts of code, such as filtering or formatting add up 
 to a lot of duplication. In fact, this is the reason the package came about. It simply centralises this code, allowing
@@ -37,6 +39,7 @@ generated as well, such as `randomMySqlDate('l jS \of F Y h:i:s A')`. All releva
 
 * simple response
 * efficient installation
+* quickly generate reliable fake data such as dates, passwords, numbers of different specs etc. 
 
 ## Install
 

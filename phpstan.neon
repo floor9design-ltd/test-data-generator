@@ -7,10 +7,10 @@
 # @author    Rick Morice <richard.morice@crowdfunder.co.uk>
 # @copyright crowdfunder.co.uk
 # @license   Proprietary software
-# @version   1.0
+# @version   1.5.0
 # @link      https://github.com/devCrowdfunder/us-php-sdk
 # @link      https://crowdfunder.co.uk
-# @version   1.0
+# @version   1.5.0
 # @since     File available since Release 1.0
 
 parameters:

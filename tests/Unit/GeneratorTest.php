@@ -11,10 +11,10 @@
  * @author    Rick Morice <rick@floor9design.com>
  * @copyright Floor9design Ltd
  * @license   MIT
- * @version   1.0
+ * @version   1.5.0
  * @link      https://github.com/floor9design-ltd/test-data-generator
  * @link      https://floor9design.com
- * @version   1.0
+ * @version   1.5.0
  * @since     File available since Release 1.0
  *
  */
@@ -36,10 +36,10 @@ use PHPUnit\Framework\TestCase;
  * @author    Rick Morice <rick@floor9design.com>
  * @copyright Floor9design Ltd
  * @license   MIT
- * @version   1.0
+ * @version   1.5.0
  * @link      https://github.com/floor9design-ltd/test-data-generator
  * @link      https://floor9design.com
- * @version   1.0
+ * @version   1.5.0
  * @see       \Floor9design\TestDataGenerator\Generator
  * @since     File available since Release 1.0
  */

@@ -11,19 +11,42 @@
 # @link      https://floor9design.com
 # @link      https://github.com/floor9design-ltd/test-data-generator
 # @since     File available since Release 1.0
+os: linux
 language: php
-dist: jammy
-php:
-  - '8.1'
+jobs:
+  include:
+    - dist: jammy
+      php:
+        - '8.2.0'
 
-before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --no-interaction
+      addons:
+        apt:
+          update: true
+          packages:
+            - libonig-dev
 
-script:
-  - XDEBUG_MODE=coverage ./vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml
+      before_script:
+        - travis_retry composer self-update
+        - travis_retry composer install --no-interaction
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+      script:
+        - XDEBUG_MODE=coverage ./vendor/phpunit/phpunit/phpunit --coverage-text --coverage-clover=coverage.clover
+        - ./vendor/bin/phpstan
 
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
 
+    - dist: jammy
+      php:
+        - '8.1'
+
+      before_script:
+        - travis_retry composer self-update
+        - travis_retry composer install --no-interaction
+
+      script:
+        - XDEBUG_MODE=coverage ./vendor/phpunit/phpunit/phpunit --coverage-text --coverage-clover=coverage.clover
+        - ./vendor/bin/phpstan
+
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)

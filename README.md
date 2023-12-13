@@ -4,8 +4,8 @@
 [![Packagist](https://img.shields.io/packagist/v/floor9design/test-data-generator?style=plastic)](https://packagist.org/packages/floor9design/test-data-generator)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=plastic)](LICENCE.md)
 
-[![Build Status](https://img.shields.io/travis/floor9design-ltd/test-data-generator?style=plastic)](https://travis-ci.com/github/floor9design-ltd/test-data-generator)
-[![Build Status](https://img.shields.io/codecov/c/github/floor9design-ltd/test-data-generator?style=plastic)](https://codecov.io/gh/floor9design-ltd/test-data-generator)
+[![Build Status](https://img.shields.io/travis/com/floor9design-ltd/test-data-generator?style=plastic)](https://travis-ci.com/github/floor9design-ltd/test-data-generator)
+[![Code Coverage](https://img.shields.io/codecov/c/github/floor9design-ltd/test-data-generator?style=plastic)](https://codecov.io/gh/floor9design-ltd/test-data-generator)
 
 [![Github Downloads](https://img.shields.io/github/downloads/floor9design-ltd/test-data-generator/total?style=plastic)](https://github.com/floor9design-ltd/test-data-generator)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/floor9design/test-data-generator?style=plastic)](https://packagist.org/packages/floor9design/test-data-generator)
@@ -43,10 +43,24 @@ generated as well, such as `randomMySqlDate('l jS \of F Y h:i:s A')`. All releva
 
 ## Install
 
+[![Packagist Downloads](https://img.shields.io/packagist/dt/floor9design/test-data-generator?style=plastic)](https://packagist.org/packages/floor9design/test-data-generator)
+
 Via Composer
 
 ``` bash
 composer require floor9design/test-data-generator
+```
+
+[![Github Downloads](https://img.shields.io/github/downloads/floor9design-ltd/test-data-generator/total?style=plastic)](https://github.com/floor9design-ltd/test-data-generator)
+
+Via git
+
+``` bash
+git clone https://github.com/floor9design-ltd/test-data-generator.git
+```
+Or:
+``` bash
+git clone git@github.com:floor9design-ltd/test-data-generator.git
 ```
 
 ## Usage
@@ -61,6 +75,9 @@ automatically included. If your system works another way, this can be manually i
 Note that they are namespaced, so should not clash with your other classes/methods.
 
 ## Testing
+
+[![Build Status](https://img.shields.io/travis/com/floor9design-ltd/test-data-generator?style=plastic)](https://travis-ci.com/github/floor9design-ltd/test-data-generator)
+[![Code Coverage](https://img.shields.io/codecov/c/github/floor9design-ltd/test-data-generator?style=plastic)](https://codecov.io/gh/floor9design-ltd/test-data-generator)
 
 To run the tests: 
 
